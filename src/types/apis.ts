@@ -1,0 +1,1 @@
+export type RateLimitPeriod = 'ms' | 's' | 'min' | 'hour' | 'day' | 'month'
