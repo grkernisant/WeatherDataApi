@@ -1,6 +1,9 @@
+import { v7 as uuidv7 } from 'uuid'
 import { eq } from 'drizzle-orm'
 import { db, CitiesTable } from '../../database/index'
 import type { City, NewCity } from '../../database/index'
+import type { CityWithCoordinates } from '../../types/cities'
+import { getCity } from '../../apis/openweathermap'
 
 export const find = async (name: string): Promise<City[]> => {
     const result: City[] = await db
@@ -10,6 +13,19 @@ export const find = async (name: string): Promise<City[]> => {
 
     if (result.length > 0) {
         return result
+    }
+
+    const apiResult:CityWithCoordinates | undefined = await getCity(name)
+    if (apiResult !== undefined) {
+        const insertData: NewCity = {
+            city: apiResult.name,
+            state: apiResult.state,
+            countryCode: apiResult.country,
+            latitude: apiResult.lat.toString(),
+            longitude: apiResult.lon.toString(),
+            createdBy: uuidv7()
+        }
+        return await db.insert(CitiesTable).values(insertData).returning()
     }
 
     return []
