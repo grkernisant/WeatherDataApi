@@ -1,7 +1,9 @@
 {
   "name": "weather-api-bun",
   "scripts": {
-    "dev": "bun run --hot src/index.ts"
+    "link:pg": "ln -sfn postgres src/database/schemas/active",
+    "dev:pg": "bun run link:pg && bun run --hot src/index.ts",
+    "dev": "bun run dev:pg"
   },
   "dependencies": {
     "date-fns": "^4.4.0",

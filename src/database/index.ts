@@ -1,3 +1,3 @@
 export * from './connection'
-export * from './schemas/cities'
-export * from './schemas/weather'
+export * from '@schemas/cities'
+export * from '@schemas/weather'
