@@ -5,7 +5,7 @@ export const CityWithCoordinatesSchema = z.object({
     lat: z.number(),
     lon: z.number(),
     country: z.string().length(2),
-    state: z.string().max(25),
+    state: z.string().max(25).optional(),
 })
 export type CityWithCoordinates = z.infer<typeof CityWithCoordinatesSchema>
 

@@ -32,6 +32,9 @@ app.get('/city/:code', async (c) => {
   const weather = await getWeatherData(city, previousHour)
   return c.json({
     code,
+    city: city.city,
+    state: city.state,
+    countryCode: city.countryCode,
     weather: weather[0]?.weatherData 
   })
 })

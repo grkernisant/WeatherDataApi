@@ -8,7 +8,10 @@
     "lib": ["ESNext"],
     "module": "esnext",
     "target": "esnext",
-    "moduleResolution": "bundler"
+    "moduleResolution": "bundler",
+    "paths": {
+      "@schemas/*": ["./src/database/schemas/active/*"]
+    },
   },
   "include": ["src/**/*", "types/**/*"]
 }

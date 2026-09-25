@@ -1,5 +1,5 @@
 services:
-  db:
+  pg:
     image: postgres:18.6
     container_name: postgres_db
     restart: always
@@ -13,5 +13,20 @@ services:
     volumes:
       - pg_data:/var/lib/postgresql
 
+  my:
+    image: mysql:9.7.2
+    container_name: mysql_db
+    restart: always
+    environment:
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+      MYSQL_ROOT_PASSWORD: root_pass
+      MYSQL_DATABASE: weather_api
+    ports:
+      - "3306:3306"
+    volumes:
+      - my_data:/var/lib/mysql
+
 volumes:
   pg_data:
+  my_data:

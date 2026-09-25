@@ -1,4 +1,5 @@
 import env from '../config/env.ts'
-import { drizzle } from 'drizzle-orm/node-postgres'
+import { drizzle as DrizzlePostGres } from 'drizzle-orm/node-postgres'
+import { drizzle as DrizzleMySQL } from 'drizzle-orm/mysql2'
 
-export const db = drizzle(env.DATABASE_URL)
+export const db = env.DB_DRIVER === 'mysql' ? DrizzleMySQL(env.DATABASE_URL) : DrizzlePostGres(env.DATABASE_URL)
