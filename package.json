@@ -3,6 +3,8 @@
   "scripts": {
     "link:pg": "ln -sfn postgres src/database/schemas/active",
     "dev:pg": "bun run link:pg && bun run --hot src/index.ts",
+    "link:my": "ln -sfn mysql src/database/schemas/active",
+    "dev:my": "bun run link:my && bun run --hot src/index.ts",
     "dev": "bun run dev:pg"
   },
   "dependencies": {
@@ -11,6 +13,7 @@
     "drizzle-kit": "^0.31.10",
     "drizzle-orm": "^0.45.2",
     "hono": "^4.13.7",
+    "mysql2": "^3.24.4",
     "pg": "^8.23.0",
     "postgres": "^3.4.9",
     "uuid": "^14.0.2",

@@ -1,5 +1,6 @@
 import { v7 as uuidv7 } from 'uuid'
-import { eq } from 'drizzle-orm'
+import { eq, desc } from 'drizzle-orm'
+import env from '../../config/env'
 import { db, CitiesTable } from '../../database/index'
 import type { City, NewCity } from '../../database/index'
 import type { CityWithCoordinates } from '../../types/cities'
@@ -19,13 +20,21 @@ export const find = async (name: string): Promise<City[]> => {
     if (apiResult !== undefined) {
         const insertData: NewCity = {
             city: apiResult.name,
-            state: apiResult.state,
+            state: apiResult.state ?? '',
             countryCode: apiResult.country,
             latitude: apiResult.lat.toString(),
             longitude: apiResult.lon.toString(),
             createdBy: uuidv7()
         }
-        return await db.insert(CitiesTable).values(insertData).returning()
+        if (env.DB_DRIVER === 'postgres') {
+            return await db.insert(CitiesTable).values(insertData).returning()
+        } else {
+            await db.insert(CitiesTable).values(insertData).$returningId()
+            return await db.select()
+                .from(CitiesTable)
+                .orderBy(desc(CitiesTable.id))
+                .limit(1)
+        }
     }
 
     return []

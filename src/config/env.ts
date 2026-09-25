@@ -12,6 +12,7 @@ type AppConfig = {
   DB_PASSWORD: string,
   DB_NAME: string,
   DATABASE_URL: string,
+  DB_DRIVER: string,
 
   WEATHER_API_KEY: string,
   WEATHER_CITY_ENDPOINT: string,
@@ -28,6 +29,7 @@ const env: AppConfig = {
   DB_PASSWORD: process.env.DB_PASSWORD ?? "No db pwd provided",
   DB_NAME: process.env.DB_NAME ?? "No db name provided",
   DATABASE_URL: process.env.DATABASE_URL ?? "No database url provided",
+  DB_DRIVER: process.env.DB_DRIVER ?? "No db driver provided",
   WEATHER_API_KEY: process.env.WEATHER_API_KEY ?? "No API key provided",
   WEATHER_CITY_ENDPOINT: process.env.WEATHER_CITY_ENDPOINT ?? "No city endpoint",
   WEATHER_WEATHER_ENDPOINT: process.env.WEATHER_WEATHER_ENDPOINT ?? "No city endpoint",
