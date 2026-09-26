@@ -9,7 +9,7 @@ import {
 } from 'drizzle-orm/pg-core'
 import { sql } from 'drizzle-orm'
 import type { InferSelectModel, InferInsertModel } from 'drizzle-orm'
-import { CitiesTable } from './cities.ts'
+import { CitiesTable } from './cities'
 
 export const CityWeatherTable = pgTable(
   'cities_weather',

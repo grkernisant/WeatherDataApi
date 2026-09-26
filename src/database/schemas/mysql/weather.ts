@@ -9,7 +9,7 @@ import {
 } from 'drizzle-orm/mysql-core'
 import { sql } from 'drizzle-orm'
 import type { InferSelectModel, InferInsertModel } from 'drizzle-orm'
-import { CitiesTable } from './cities.ts'
+import { CitiesTable } from './cities'
 
 export const CityWeatherTable = mysqlTable(
   'cities_weather',
